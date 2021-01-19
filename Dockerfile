@@ -33,5 +33,8 @@ RUN apt-get clean -y
 # install Grunt, node-gyp
 RUN npm install -g grunt node-gyp
 
+# install jq
+RUN apt-get install jq -y
+
 WORKDIR /var/jenkins_home
 

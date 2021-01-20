@@ -23,6 +23,7 @@ RUN add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/debian \
    $(lsb_release -cs) \
    stable"
+   
 RUN apt-get update -y
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
@@ -31,7 +32,7 @@ RUN apt install -y build-essential
 
 #install gvm, go
 RUN apt-get install -y git mercurial make binutils bison gcc build-essential
-RUN bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+RUN ["/bin/bash", "-c", "bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)"]
 RUN source /root/.gvm/scripts/gvm
 RUN gvm install go1.14.4 -B
 RUN gvm use go1.14.4 --default

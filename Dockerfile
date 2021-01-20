@@ -33,9 +33,9 @@ RUN apt install -y build-essential
 #install gvm, go
 RUN apt-get install -y git mercurial make binutils bison gcc build-essential
 RUN ["/bin/bash", "-c", "bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)"]
-RUN source /root/.gvm/scripts/gvm
-RUN gvm install go1.14.4 -B
-RUN gvm use go1.14.4 --default
+RUN ["/bin/bash", "-c", "source /root/.gvm/scripts/gvm"]
+RUN ["/bin/bash", "-c", ". /root/.gvm/scripts/gvm && gvm install go1.4 -B"]
+RUN ["/bin/bash", "-c", ". /root/.gvm/scripts/gvm && gvm use go1.4 --default"]
 
 # install Grunt, node-gyp
 RUN npm install -g grunt node-gyp

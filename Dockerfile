@@ -28,13 +28,21 @@ RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # install Development Tools# Using Debian
 RUN apt install -y build-essential
-RUN apt-get clean -y
+
+#install gvm, go
+RUN apt-get install -y git mercurial make binutils bison gcc build-essential
+RUN bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+RUN source /root/.gvm/scripts/gvm
+RUN gvm install go1.14.4 -B
+RUN gvm use go1.14.4 --default
 
 # install Grunt, node-gyp
 RUN npm install -g grunt node-gyp
 
 # install jq
 RUN apt-get install jq -y
+
+RUN apt-get clean -y
 
 WORKDIR /var/jenkins_home
 
